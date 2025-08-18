@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Client Info</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+<button id="getClientInfo">Get Client Info</button>
+<div id="clientInfo"></div>
+
+<script>
+    document.getElementById('getClientInfo').onclick = function() {
+        // Get IP and Location using ipinfo.io API
+        $.get('https://ipinfo.io?token=e2b31e49750579', function(data) {
+            const ip = data.ip;
+            const location = data.city + ', ' + data.region + ', ' + data.country;
+            document.getElementById('clientInfo').innerHTML = `
+                <p><strong>IP Address:</strong> ${ip}</p>
+                <p><strong>Location:</strong> ${location}</p>
+            `;
+        });
+    }
+</script>
+
+</body>
+</html>
